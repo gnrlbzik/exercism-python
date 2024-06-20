@@ -41,7 +41,25 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     where generated power = voltage * current
     """
 
-    pass
+    generated_power = voltage * current
+    
+    efficiency_level = (generated_power / theoretical_max_power) * 100
+
+    efficiency_scale_levels = {
+        '<100': 'green',
+        '<80': 'orange',
+        '<60': 'red',
+        '<30': 'black',
+    }
+    
+    if efficiency_level >= 80:
+        return efficiency_scale_levels['<100']
+    elif efficiency_level >= 60:
+        return efficiency_scale_levels['<80']
+    elif efficiency_level >= 30:
+        return efficiency_scale_levels['<60']
+    else:
+        return efficiency_scale_levels['<30']
 
 
 def fail_safe(temperature, neutrons_produced_per_second, threshold):
