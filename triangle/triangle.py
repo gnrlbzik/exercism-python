@@ -2,8 +2,9 @@ def equilateral(sides):
     """
     # An _equilateral_ triangle has all three sides the same length.
     """
-    
-    return sides[0] == sides[1] == sides[2]
+    if 0 in sides:
+        return False
+    return all(sides[0] == side for side in sides)
 
 
 def isosceles(sides):
@@ -17,4 +18,5 @@ def scalene(sides):
     """
     # A _scalene_ triangle has all sides of different lengths.
     """
-    return sides[0] != sides[1] and sides[0] != sides[2] and sides[1] != sides[2]
+    oneThird = sum(sides) / 3
+    return oneThird != sides[0] or oneThird != sides[1] or oneThird != sides[2]
